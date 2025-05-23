@@ -7,8 +7,8 @@ public class Main {
         String word1 = "DEO";
         String word2 = "MOND";
 
-        CalculateNeedlemanWunschTable.calculateTable(word1, word2);
-
+        Table table =CalculateNeedlemanWunschTable.calculateTable(word1, word2);
+        table.printTable();
 
     }
 }

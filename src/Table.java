@@ -1,22 +1,34 @@
 package src;
-import java.util.Arrays;
 
+/**
+ * Class for Table.
+ * First index i corresponds to the first word.
+ * Second index j corresponds to the second word
+ */
 public class Table {
 
     TableValue[][] table;
-    public Table() {
-    }
-
-    public Table(TableValue[][] table) {}
+    String word1 ="";
+    String word2 ="";
 
     public Table(String word1, String word2, int defaultPenalty) {
+        this.word1 = word1;
+        this.word2 = word2;
         table = new TableValue[word1.length()+1][word2.length()+1];
         for (int i = 0; i < word1.length()+1; i++) {
             table[i][0] = new TableValue(i * defaultPenalty, new TableIndex[0]);
         }
-        for (int i = 0; i < word2.length()+1; i++) {
-            table[0][i] = new TableValue(i * defaultPenalty, new TableIndex[0]);
+        for (int j = 0; j < word2.length()+1; j++) {
+            table[0][j] = new TableValue(j * defaultPenalty, new TableIndex[0]);
         }
+    }
+
+    public TableValue getValue(int row, int col) {
+        return table[row][col];
+    }
+
+    public void setValue(int row, int col, int value, TableIndex[] predecessors) {
+        table[row][col] = new TableValue(value, predecessors) ;
     }
 
     /**
@@ -30,22 +42,28 @@ public class Table {
 
         // Header mit Spaltennummern
         System.out.print("     ");
-        for (int col = 0; col < table[0].length; col++) {
-            System.out.printf("%8d", col);
+        System.out.printf("%-20s", " ");
+        System.out.printf("%-20s", "0");
+        for (int col = 0; col < table[0].length - 1; col++) {
+            System.out.printf("%-20s", word2.charAt(col));
         }
-        System.out.println();
         System.out.println();
 
         // Zeilen ausgeben
         for (int row = 0; row < table.length; row++) {
-            System.out.printf("%3d: ", row);
+            if(row == 0) {
+                System.out.printf("%-21s", row);
+            } else {
+                System.out.printf("%-20s ", word1.charAt(row-1));
+            }
+
 
             for (int col = 0; col < table[row].length; col++) {
                 if (table[row][col] != null) {
                     String cellContent = formatCell(table[row][col]);
-                    System.out.printf("%15s", cellContent);
+                    System.out.printf("%-20s", cellContent);
                 } else {
-                    System.out.printf("%15s", "|---null---");
+                    System.out.printf("%-20s", "[null]");
                 }
             }
             System.out.println();
@@ -58,11 +76,11 @@ public class Table {
      */
     private String formatCell(TableValue value) {
         if (value.getPredecessors() == null || value.getPredecessors().length == 0) {
-            return "|Start+V:" + value.value;
+            return value.value + "-" + "[Start]";
         } else {
             StringBuilder predecessors = new StringBuilder();
-            for (int i = 0; i < value.getPredecessors().length; i++) {
-                predecessors.append("[").append(value.getPredecessors()[i]).append("]");
+            for (int k = 0; k < value.getPredecessors().length; k++) {
+                predecessors.append("[").append(value.getPredecessors()[k].i()).append(",").append(value.getPredecessors()[k].j()).append("]");
             }
             return value.value + "-" + predecessors;
         }
