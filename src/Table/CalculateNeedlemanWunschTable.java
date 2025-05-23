@@ -1,10 +1,9 @@
-package src;
+package src.Table;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Stack;
 
 public class CalculateNeedlemanWunschTable {
     private static final String EVALUATION_CONFIG_PATH = "evaluation.properties";
@@ -67,11 +66,11 @@ public class CalculateNeedlemanWunschTable {
             boolean char1Vowel = isVowel(char1);
             boolean char2Vowel = isVowel(char2);
             if(char1Vowel && char2Vowel) {
-                return 2;
+                return twoVowelsPenalty;
             } else if (!char1Vowel && !char2Vowel) {
-                return 4;
+                return twoConsonantPenalty;
             } else {
-                return 6;
+                return consonantVowelsPenalty;
             }
         }
 

@@ -1,4 +1,4 @@
-package src;
+package src.Table;
 
 public class TableValue {
     public int value;
@@ -7,11 +7,6 @@ public class TableValue {
     public TableValue(int value, TableIndex[] predecessor) {
         this.value = value;
         this.predecessors = predecessor;
-    }
-
-    public TableValue(TableValue tableValue) {
-        this.value = tableValue.value;
-        this.predecessors = tableValue.predecessors;
     }
 
     public TableIndex[] getPredecessors() {

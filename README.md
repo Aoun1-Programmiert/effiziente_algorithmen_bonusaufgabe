@@ -1,6 +1,7 @@
-tbd
+Code can be run with the following command:
 
-find . -name "*.java" > sources.txt
+java -cp out src.Main WordOne WordTwo
 
+Default Values for WordOne and WordTwo are Mond && Deo as in the task
 
-javac -d out  @sources.txt
+Needed Java version: openjdk 21.0.7 2025-04-15 or newer

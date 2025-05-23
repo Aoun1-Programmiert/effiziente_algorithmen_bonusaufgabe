@@ -1,4 +1,4 @@
-package src;
+package src.Table;
 
 /**
  * Class for Table.
@@ -8,8 +8,8 @@ package src;
 public class Table {
 
     TableValue[][] table;
-    String word1 ="";
-    String word2 ="";
+    String word1;
+    String word2;
 
     public Table(String word1, String word2, int defaultPenalty) {
         this.word1 = word1;
