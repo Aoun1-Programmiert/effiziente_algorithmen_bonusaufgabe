@@ -12,19 +12,15 @@ public class Table {
     public Table(String word1, String word2, int defaultPenalty) {
         table = new TableValue[word1.length()+1][word2.length()+1];
         for (int i = 0; i < word1.length()+1; i++) {
-            table[i][0] = new TableValue(i * defaultPenalty, new int[0]);
+            table[i][0] = new TableValue(i * defaultPenalty, new TableIndex[0]);
         }
         for (int i = 0; i < word2.length()+1; i++) {
-            table[0][i] = new TableValue(i * defaultPenalty, new int[0]);
+            table[0][i] = new TableValue(i * defaultPenalty, new TableIndex[0]);
         }
     }
 
     /**
-     * Printoutput for the table - made with generative AI
-     *
-     */
-    /**
-     * Einfache Tabellenausgabe
+     * simple table output, created from generative ai but updated
      */
     public void printTable() {
         if (table == null || table.length == 0) {
@@ -61,10 +57,14 @@ public class Table {
      * Formatiert eine Zelle für die Ausgabe
      */
     private String formatCell(TableValue value) {
-        if (value.predecessor == null || value.predecessor.length == 0) {
-            return "|Start+V:" + String.valueOf(value.value);
+        if (value.getPredecessors() == null || value.getPredecessors().length == 0) {
+            return "|Start+V:" + value.value;
         } else {
-            return value.value + Arrays.toString(value.predecessor);
+            StringBuilder predecessors = new StringBuilder();
+            for (int i = 0; i < value.getPredecessors().length; i++) {
+                predecessors.append("[").append(value.getPredecessors()[i]).append("]");
+            }
+            return value.value + "-" + predecessors;
         }
     }
 }

@@ -2,16 +2,19 @@ package src;
 
 public class TableValue {
     public int value;
-    public int[] predecessor;
+    private final TableIndex[] predecessors;
 
-    public TableValue(int value, int[] predecessor) {
+    public TableValue(int value, TableIndex[] predecessor) {
         this.value = value;
-        this.predecessor = predecessor;
+        this.predecessors = predecessor;
     }
 
     public TableValue(TableValue tableValue) {
         this.value = tableValue.value;
-        this.predecessor = tableValue.predecessor;
+        this.predecessors = tableValue.predecessors;
     }
 
+    public TableIndex[] getPredecessors() {
+        return predecessors;
+    }
 }
