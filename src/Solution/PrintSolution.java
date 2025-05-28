@@ -1,9 +1,9 @@
 package src.Solution;
 
 import src.Table.Table;
-import src.Table.TableIndex;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * [i: 0, j: 0]
@@ -15,20 +15,23 @@ import java.util.Collections;
  * [i: 4, j: 3]
  */
 
-public class PrintAlignment {
+public class PrintSolution {
+    public static void printSolution(Table table, List<Solution> solutions) {
+        System.out.println("---------------------");
+        System.out.println("Solution:");
+        System.out.println("Amount: " + solutions.size()
+                + " - Value: " + table.getValueOfOptSolution());
+        for (Solution solution : solutions) {
+            System.out.println("---------------------");
+            PrintSolution.alignment(table, solution);
+        }
+
+    }
     public static void alignment(Table table, Solution solution){
 
         Collections.reverse(solution.getIndexList());
         Collections.reverse(solution.getAlignments());
 
-//        for (TableIndex index : solution.getIndexList()) {
-//            System.out.print(index);
-//        }
-//        System.out.println();
-//        for (Alignment alignment : solution.getAlignments()) {
-//            System.out.print(alignment + " - ");
-//        }
-//        System.out.println();
 
         String w1 = table.word1;
         String w2 = table.word2;

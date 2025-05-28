@@ -2,14 +2,11 @@ package src;
 
 
 import src.Solution.CalculateSolutionFromTable;
-import src.Solution.PrintAlignment;
+import src.Solution.PrintSolution;
 import src.Solution.Solution;
 import src.Table.CalculateNeedlemanWunschTable;
 import src.Table.Table;
-import src.Table.TableIndex;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -23,14 +20,6 @@ public class Main {
 
         List<Solution> solutions = CalculateSolutionFromTable.calculate(table);
 
-        System.out.println("---------------------");
-        System.out.println("Solution:");
-        System.out.println("Amount: " + solutions.size()
-                + " - Value: " + table.getValueOfOptSolution());
-        for (Solution solution : solutions) {
-            System.out.println("---------------------");
-            PrintAlignment.alignment(table, solution);
-
-        }
+        PrintSolution.printSolution(table, solutions);
     }
 }
