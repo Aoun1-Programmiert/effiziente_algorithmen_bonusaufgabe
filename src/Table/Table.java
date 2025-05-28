@@ -8,18 +8,26 @@ package src.Table;
 public class Table {
 
     TableValue[][] table;
-    String word1;
-    String word2;
+    public String word1;
+    public String word2;
+    public int width;
+    public int height;
 
     public Table(String word1, String word2, int defaultPenalty) {
         this.word1 = word1;
         this.word2 = word2;
         table = new TableValue[word1.length()+1][word2.length()+1];
+        width = word1.length();
+        height = word2.length();
         for (int i = 0; i < word1.length()+1; i++) {
-            table[i][0] = new TableValue(i * defaultPenalty, new TableIndex[0]);
+            table[i][0] = new TableValue(i * defaultPenalty, new TableIndex[]{
+                    new TableIndex(i-1,0)
+            });
         }
         for (int j = 0; j < word2.length()+1; j++) {
-            table[0][j] = new TableValue(j * defaultPenalty, new TableIndex[0]);
+            table[0][j] = new TableValue(j * defaultPenalty, new TableIndex[]{
+                    new TableIndex(0,j-1)
+            });
         }
     }
 
@@ -29,6 +37,10 @@ public class Table {
 
     public void setValue(int row, int col, int value, TableIndex[] predecessors) {
         table[row][col] = new TableValue(value, predecessors) ;
+    }
+
+    public int getValueOfOptSolution(){
+        return table[width][height].value;
     }
 
     /**
