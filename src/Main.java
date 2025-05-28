@@ -23,8 +23,14 @@ public class Main {
 
         List<Solution> solutions = CalculateSolutionFromTable.calculate(table);
 
+        System.out.println("---------------------");
+        System.out.println("Solution:");
+        System.out.println("Amount: " + solutions.size()
+                + " - Value: " + table.getValueOfOptSolution());
         for (Solution solution : solutions) {
+            System.out.println("---------------------");
             PrintAlignment.alignment(table, solution);
+
         }
     }
 }

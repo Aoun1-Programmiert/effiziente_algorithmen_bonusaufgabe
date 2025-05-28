@@ -9,24 +9,20 @@ import java.util.List;
 public class Solution {
     private final List<TableIndex> indexList;
     private final List<Alignment> alignments;
-    private int value = -1;
 
-    public Solution(TableIndex index, int _value) {
+    public Solution(TableIndex index) {
         indexList = List.of(index);
         alignments = new ArrayList<>();
-        value = _value;
     }
 
-    public Solution(List<TableIndex> _indexList, List<Alignment> _alignments, int _value) {
+    public Solution(List<TableIndex> _indexList, List<Alignment> _alignments) {
         indexList = _indexList;
         alignments = _alignments;
-        value = _value;
     }
 
     public Solution(Solution solution) {
         this.indexList = solution.indexList;
         this.alignments = solution.alignments;
-        this.value = solution.value;
     }
 
     public Solution() {
@@ -45,10 +41,5 @@ public class Solution {
     public List<Alignment> getAlignments() {
         return alignments;
     }
-
-    public int getValue() {
-        return value;
-    }
-
 
 }

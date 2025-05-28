@@ -11,7 +11,7 @@ import java.util.List;
 public class CalculateSolutionFromTable {
     public static List<Solution> calculate(Table table) {
         return backtrack(table, table.width, table.height,
-                new Solution(new TableIndex(table.width, table.height), table.getValueOfOptSolution()));
+                new Solution(new TableIndex(table.width, table.height)));
     }
 
     /**
@@ -36,7 +36,7 @@ public class CalculateSolutionFromTable {
             List<Alignment> alignments = new ArrayList<>(solution.getAlignments());
             alignments.add(calculateAlignment(i,j, predecessor));
 
-            Solution updatedSolution = new Solution(indexes, alignments, solution.getValue());
+            Solution updatedSolution = new Solution(indexes, alignments);
 
             solutions.addAll(backtrack(table, predecessor.i(), predecessor.j(), updatedSolution));
         }

@@ -60,7 +60,7 @@ public class CalculateNeedlemanWunschTable {
         char char1 = word1.charAt(i-1);
         char char2 = word2.charAt(j-1);
 
-        if(char1 == char2) {
+        if(Character.toLowerCase(char1) == Character.toLowerCase(char2)) {
             return 0;
         } else {
             boolean char1Vowel = isVowel(char1);

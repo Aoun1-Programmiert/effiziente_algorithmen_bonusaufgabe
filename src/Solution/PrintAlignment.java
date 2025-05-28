@@ -17,8 +17,7 @@ import java.util.Collections;
 
 public class PrintAlignment {
     public static void alignment(Table table, Solution solution){
-        System.out.println("---------------------");
-        System.out.println("Solution:" + solution.getValue());
+
         Collections.reverse(solution.getIndexList());
         Collections.reverse(solution.getAlignments());
 
