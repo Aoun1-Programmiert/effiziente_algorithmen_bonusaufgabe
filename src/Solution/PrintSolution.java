@@ -9,6 +9,7 @@ import java.util.List;
  * Utility class for printing and displaying solutions to sequence alignment problems.
  * This class provides methods to format and output alignment solutions in a readable format,
  * showing how two sequences can be aligned with gaps and matches.
+ *
  */
 public class PrintSolution {
 
@@ -27,10 +28,15 @@ public class PrintSolution {
      * @see #alignment(Table, Solution)
      */
     public static void printSolution(Table table, List<Solution> solutions) {
+        // Print header separator
         System.out.println("---------------------");
         System.out.println("Solution:");
+
+        // Display summary: number of solutions found and optimal value
         System.out.println("Amount: " + solutions.size()
                 + " - Value: " + table.getValueOfOptSolution());
+
+        // Print each individual solution with visual alignment
         for (Solution solution : solutions) {
             System.out.println("---------------------");
             PrintSolution.alignment(table, solution);
@@ -49,9 +55,6 @@ public class PrintSolution {
      * <li>ALIGN_W2_BLANK: Character from second sequence aligned with gap in first sequence</li>
      * </ul>
      *
-     * <p>Note: This method modifies the input solution by reversing its index list and alignments
-     * to display them in the correct order.
-     *
      * @param table The table containing the two sequences (word1 and word2) to be aligned
      * @param solution The solution containing the sequence of alignment operations.
      *                 The solution's lists will be reversed as a side effect of this method.
@@ -65,9 +68,6 @@ public class PrintSolution {
      * @see Solution#getIndexList()
      */
     public static void alignment(Table table, Solution solution){
-
-        Collections.reverse(solution.getIndexList());
-        Collections.reverse(solution.getAlignments());
 
         String w1 = table.word1;
         String w2 = table.word2;
