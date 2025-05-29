@@ -131,8 +131,8 @@ public class Table {
             return value.value + "-" + "[Start]";
         } else {
             StringBuilder predecessors = new StringBuilder();
-            for (TableIndex(int i, int j) : value.getPredecessors()) {
-                predecessors.append("[").append(i).append(",").append(j).append("]");
+            for (TableIndex predecessor : value.getPredecessors()) {
+                predecessors.append("[").append(predecessor.i()).append(",").append(predecessor.j()).append("]");
             }
             return value.value + "-" + predecessors;
         }
